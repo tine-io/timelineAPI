@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.location";
+option java_outer_classname = "LocationProto";
+option objc_class_prefix = "LOC";
+
+package location;
+
+service Location {
+  rpc GetLocationByTimestamp (LocationByTimestampReq) returns (LocationReply) {}
+}
+
+message LocationByTimestampReq {
+  int32 timestamp = 1;
+}
+
+message LocationReply {
+  int32 lat = 1;
+  int32 long = 2;
+}
