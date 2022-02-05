@@ -1,0 +1,30 @@
+keycloak:
+  realm: timelineUI
+  resource: rest-api
+  auth-server-url: 'http://localhost:8800/auth/'
+  ssl-required: external
+  public-client: 'true'
+  bearer-only: 'true'
+  cors: 'true'
+  securityConstraints:
+    - securityCollections:
+        - name: protected resource
+          patterns: ['/products', '/products/','/locationByTimestamp', '/locationByTimestamp/']
+      authRoles:
+        - 'user'
+server:
+  port: '8000'
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: '27017'
+      database: location_DB
+      authentication-database: admin
+grpc:
+  client:
+    local-grpc-server:
+      address: 'static://localhost:50051'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
