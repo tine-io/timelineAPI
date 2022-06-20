@@ -40,8 +40,6 @@ public class LocationService implements LocationServiceInterface{
 
     public LocationList getLocationBytiemrange(String startDate, String endDate, String user) {
         Query query = new Query();
-        Date sDate = new Date(Long.parseLong(startDate));
-        Date eDate = new Date(Long.parseLong(endDate));
         query.addCriteria(Criteria.where("tst").gte(new Date(Long.parseLong(startDate))).lt(new Date(Long.parseLong(endDate))));
         query.addCriteria(Criteria.where("user").is(user));
         query.fields().include("point");
